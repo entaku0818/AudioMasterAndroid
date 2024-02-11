@@ -3,12 +3,11 @@ package com.example.myapplication
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.myapplication.model.AudioPlayer
-
+import com.example.myapplication.R
 class AudioPlayerViewModel(
-    application: Application,
-    private val resourceId: Int = R.raw.jinglebells
+    application: Application
 ) : AndroidViewModel(application) {
-
+    private val resourceId: Int = R.raw.jinglebells
     private val audioPlayer = AudioPlayer(application, resourceId)
 
     fun playAudio() {

@@ -25,7 +25,6 @@ class AudioPlayer(
     }
 
     fun playAudio() {
-        // 既存のMediaPlayerを再生
         mediaPlayer?.start()
     }
 
@@ -37,7 +36,6 @@ class AudioPlayer(
     }
 
     fun pauseAudio() {
-        // MediaPlayerを一時停止
         mediaPlayer?.pause()
     }
 }

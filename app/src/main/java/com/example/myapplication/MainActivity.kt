@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.ui.unit.dp
-import com.example.myapplication.R
 
 class MainActivity : ComponentActivity() {
 
