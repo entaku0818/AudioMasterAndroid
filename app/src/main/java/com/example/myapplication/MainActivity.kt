@@ -33,6 +33,12 @@ class MainActivity : ComponentActivity() {
             }) {
                 Text(text = "Go to Audio Player")
             }
+
+            Button(onClick = {
+                context.startActivity(Intent(context, AudioRecorderActivity::class.java))
+            }) {
+                Text(text = "Go to Audio Recorder")
+            }
         }
     }
 }

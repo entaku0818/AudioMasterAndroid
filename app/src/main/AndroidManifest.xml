@@ -12,11 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-        <activity
-            android:name=".AudioRecoder"
-            android:exported="false"
-            android:label="@string/title_activity_audio_recoder"
-            android:theme="@style/Theme.MyApplication" />
+
         <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
@@ -33,6 +29,11 @@
             android:name=".AudioPlayerActivity"
             android:exported="true"
             android:label="@string/title_audio_player"
+            android:theme="@style/Theme.MyApplication"></activity>
+        <activity
+            android:name=".AudioRecorderActivity"
+            android:exported="true"
+            android:label="@string/title_activity_audio_recoder"
             android:theme="@style/Theme.MyApplication"></activity>
     </application>
 

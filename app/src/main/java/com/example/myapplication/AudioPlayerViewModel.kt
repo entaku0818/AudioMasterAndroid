@@ -2,28 +2,42 @@ package com.example.myapplication
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.example.myapplication.model.AudioPlayer
-import com.example.myapplication.R
-class AudioPlayerViewModel(
-    application: Application
-) : AndroidViewModel(application) {
-    private val resourceId: Int = R.raw.jinglebells
-    private val audioPlayer = AudioPlayer(application, resourceId)
+import androidx.lifecycle.viewModelScope
+import com.example.myapplication.model.AudioRecorder
+import kotlinx.coroutines.launch
 
-    fun playAudio() {
-        audioPlayer.playAudio()
+class AudioRecorderViewModel(application: Application) : AndroidViewModel(application) {
+    private lateinit var audioRecorder: AudioRecorder
+    private var outputFile: String? = null
+
+    fun initializeRecorder(outputFile: String) {
+        this.outputFile = outputFile
+        audioRecorder = AudioRecorder(getApplication(), outputFile)
     }
 
-    fun pauseAudio() {
-        audioPlayer.pauseAudio()
+    fun startRecording() {
+        outputFile?.let {
+            audioRecorder.startRecording()
+
+        }
     }
 
-    fun stopAudio() {
-        audioPlayer.stopAudio()
+    fun stopRecording() {
+        viewModelScope.launch {
+            audioRecorder.stopRecording()
+        }
+    }
+
+    fun playRecordedFile() {
+        outputFile?.let {
+            viewModelScope.launch {
+                audioRecorder.playRecordedFile()
+            }
+        }
     }
 
     override fun onCleared() {
         super.onCleared()
-        audioPlayer.stopAudio()
+        audioRecorder.stopRecording()
     }
 }

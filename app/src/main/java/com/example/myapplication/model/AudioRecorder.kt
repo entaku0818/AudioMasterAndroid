@@ -4,13 +4,14 @@ import android.media.MediaPlayer
 import android.media.MediaRecorder
 import java.io.IOException
 
-class AudioRecorder(private val mediaRecorderFactory: () -> MediaRecorder) {
+
+class AudioRecorder(private val mediaRecorderFactory: () -> MediaRecorder, private val outputFile: String) {
 
     private var mediaRecorder: MediaRecorder? = null
     private var mediaPlayer: MediaPlayer? = null
     private var isRecording = false
 
-    fun startRecording(outputFile: String) {
+    fun startRecording() {
         if (isRecording) return
 
         mediaRecorder = mediaRecorderFactory().apply {
@@ -41,7 +42,7 @@ class AudioRecorder(private val mediaRecorderFactory: () -> MediaRecorder) {
         isRecording = false
     }
 
-    fun playRecordedFile(outputFile: String) {
+    fun playRecordedFile() {
         if (mediaPlayer?.isPlaying == true) {
             mediaPlayer?.stop()
             mediaPlayer?.release()
