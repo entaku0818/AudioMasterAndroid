@@ -4,6 +4,7 @@ import android.media.MediaPlayer
 
 class AudioPlayer(
     private val context: Context,
+    private val resourceId: Int,
     private val mediaPlayerFactory: (Context, Int) -> MediaPlayer = { ctx, resId ->
         MediaPlayer.create(ctx, resId)
     }
@@ -11,22 +12,33 @@ class AudioPlayer(
 
     private var mediaPlayer: MediaPlayer? = null
 
-    fun playAudio(resourceId: Int) {
-        // 既存のMediaPlayerを停止してリリース
-        stopAudio()
+    init {
+        prepareMediaPlayer()
+    }
 
-        // 新しいMediaPlayerを作成し、音声を再生
+    private fun prepareMediaPlayer() {
         mediaPlayer = mediaPlayerFactory(context, resourceId).apply {
-            start()
             setOnCompletionListener {
-                // 再生が終了したらリリース
                 stopAudio()
             }
         }
     }
 
+    fun playAudio() {
+        // 既存のMediaPlayerを再生
+        mediaPlayer?.start()
+    }
+
     fun stopAudio() {
+        mediaPlayer?.stop()
         mediaPlayer?.release()
         mediaPlayer = null
+        prepareMediaPlayer()
+    }
+
+    fun pauseAudio() {
+        // MediaPlayerを一時停止
+        mediaPlayer?.pause()
     }
 }
+

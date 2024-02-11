@@ -4,12 +4,19 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.myapplication.model.AudioPlayer
 
-class AudioPlayerViewModel(application: Application) : AndroidViewModel(application) {
+class AudioPlayerViewModel(
+    application: Application,
+    private val resourceId: Int = R.raw.jinglebells
+) : AndroidViewModel(application) {
 
-    private val audioPlayer = AudioPlayer(application)
+    private val audioPlayer = AudioPlayer(application, resourceId)
 
-    fun playAudio(resourceId: Int) {
-        audioPlayer.playAudio(resourceId)
+    fun playAudio() {
+        audioPlayer.playAudio()
+    }
+
+    fun pauseAudio() {
+        audioPlayer.pauseAudio()
     }
 
     fun stopAudio() {
