@@ -1,11 +1,13 @@
 package com.example.myapplication.model
 
+import android.media.MediaPlayer
 import android.media.MediaRecorder
 import java.io.IOException
 
 class AudioRecorder(private val mediaRecorderFactory: () -> MediaRecorder) {
 
     private var mediaRecorder: MediaRecorder? = null
+    private var mediaPlayer: MediaPlayer? = null
     private var isRecording = false
 
     fun startRecording(outputFile: String) {
@@ -37,5 +39,22 @@ class AudioRecorder(private val mediaRecorderFactory: () -> MediaRecorder) {
         }
         mediaRecorder = null
         isRecording = false
+    }
+
+    fun playRecordedFile(outputFile: String) {
+        if (mediaPlayer?.isPlaying == true) {
+            mediaPlayer?.stop()
+            mediaPlayer?.release()
+        }
+
+        mediaPlayer = MediaPlayer().apply {
+            try {
+                setDataSource(outputFile)
+                prepare()
+                start()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
     }
 }
