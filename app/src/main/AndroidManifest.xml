@@ -35,6 +35,8 @@
             android:exported="true"
             android:label="@string/title_activity_audio_recoder"
             android:theme="@style/Theme.MyApplication"></activity>
+
     </application>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 </manifest>

@@ -4,8 +4,7 @@ import android.media.MediaPlayer
 import android.media.MediaRecorder
 import java.io.IOException
 
-
-class AudioRecorder(private val mediaRecorderFactory: () -> MediaRecorder, private val outputFile: String) {
+class AudioRecorder(private val outputFile: String) {
 
     private var mediaRecorder: MediaRecorder? = null
     private var mediaPlayer: MediaPlayer? = null
@@ -14,7 +13,8 @@ class AudioRecorder(private val mediaRecorderFactory: () -> MediaRecorder, priva
     fun startRecording() {
         if (isRecording) return
 
-        mediaRecorder = mediaRecorderFactory().apply {
+        // MediaRecorderのインスタンスを直接生成
+        mediaRecorder = MediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)
             setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
             setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)

@@ -46,8 +46,7 @@ class AudioRecorderActivity : ComponentActivity() {
     fun AudioRecorderUI(viewModel: AudioRecorderViewModel) {
         Column(modifier = Modifier.padding(PaddingValues(16.dp))) {
             Button(onClick = {
-                val outputFile = getExternalFilesDir(null)?.absolutePath + "/recording.3gp"
-                viewModel.startRecording(outputFile)
+                viewModel.startRecording()
             }) {
                 Text("Start Recording")
             }
@@ -55,8 +54,7 @@ class AudioRecorderActivity : ComponentActivity() {
                 Text("Stop Recording")
             }
             Button(onClick = {
-                val outputFile = getExternalFilesDir(null)?.absolutePath + "/recording.3gp"
-                viewModel.playRecordedFile(outputFile)
+                viewModel.playRecordedFile()
             }) {
                 Text("Play Recording")
             }

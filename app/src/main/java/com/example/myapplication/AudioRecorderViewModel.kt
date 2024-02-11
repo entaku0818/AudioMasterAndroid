@@ -1,30 +1,39 @@
+
+
 import android.app.Application
+import android.media.MediaRecorder
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.myapplication.model.AudioRecorder
-import kotlinx.coroutines.launch
+import java.io.File
 
-class AudioRecorderViewModel(
-    private val audioRecorder: AudioRecorder,
-    application: Application
-) : AndroidViewModel(application) {
+class AudioRecorderViewModel(application: Application) : AndroidViewModel(application) {
 
-    fun startRecording(outputFile: String) {
-        viewModelScope.launch {
-            audioRecorder.startRecording(outputFile)
-        }
+    // Applicationインスタンスを使用して出力ファイルのパスを設定
+    private val outputFile = application.filesDir.absolutePath + File.separator + "recorded_audio.3gp"
+
+    // AudioRecorderのインスタンスを初期化
+    private val audioRecorder = AudioRecorder(
+        outputFile = outputFile
+    )
+
+    // 録音を開始する
+    fun startRecording() {
+        audioRecorder.startRecording()
     }
 
+    // 録音を停止する
     fun stopRecording() {
-        viewModelScope.launch {
-            audioRecorder.stopRecording()
-        }
+        audioRecorder.stopRecording()
     }
 
-    fun playRecordedFile(outputFile: String) {
-        viewModelScope.launch {
-            audioRecorder.playRecordedFile(outputFile)
-        }
+    // 録音されたファイルを再生する
+    fun playRecordedFile() {
+        audioRecorder.playRecordedFile()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        audioRecorder.stopRecording()
+
     }
 }
-
