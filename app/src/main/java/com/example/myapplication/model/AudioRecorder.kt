@@ -13,7 +13,6 @@ class AudioRecorder(private val outputFile: String) {
     fun startRecording() {
         if (isRecording) return
 
-        // MediaRecorderのインスタンスを直接生成
         mediaRecorder = MediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)
             setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
