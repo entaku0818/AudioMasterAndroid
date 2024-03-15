@@ -1,7 +1,6 @@
-package com.example.myapplication
+package com.example.myapplication.ui
 
 
-import AudioRecorderViewModel
 import android.Manifest
 import android.os.Bundle
 import androidx.activity.ComponentActivity
