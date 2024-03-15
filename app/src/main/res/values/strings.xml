@@ -2,4 +2,5 @@
     <string name="app_name">My Application</string>
     <string name="title_audio_player">音声再生</string>
     <string name="title_activity_audio_recoder">AudioRecoder</string>
+    <string name="title_activity_text_to_speech">TextToSpeechActivity</string>
 </resources>

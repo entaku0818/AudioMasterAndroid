@@ -7,13 +7,15 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.example.myapplication.ui.AudioPlayerActivity
+import com.example.myapplication.ui.AudioRecorderActivity
+import com.example.myapplication.ui.TextToSpeechActivity
 
 class MainActivity : ComponentActivity() {
 
@@ -38,6 +40,13 @@ class MainActivity : ComponentActivity() {
                 context.startActivity(Intent(context, AudioRecorderActivity::class.java))
             }) {
                 Text(text = "Go to Audio Recorder")
+            }
+
+
+            Button(onClick = {
+                context.startActivity(Intent(context, TextToSpeechActivity::class.java))
+            }) {
+                Text(text = "Go to TextToSpeechActivity")
             }
         }
     }

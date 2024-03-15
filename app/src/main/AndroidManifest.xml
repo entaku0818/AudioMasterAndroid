@@ -26,14 +26,19 @@
             </intent-filter>
         </activity> <!-- AudioPlayerActivity -->
         <activity
-            android:name=".AudioPlayerActivity"
+            android:name=".ui.AudioPlayerActivity"
             android:exported="true"
             android:label="@string/title_audio_player"
             android:theme="@style/Theme.MyApplication"></activity>
         <activity
-            android:name=".AudioRecorderActivity"
+            android:name=".ui.AudioRecorderActivity"
             android:exported="true"
             android:label="@string/title_activity_audio_recoder"
+            android:theme="@style/Theme.MyApplication"></activity>
+        <activity
+            android:name=".ui.TextToSpeechActivity"
+            android:exported="true"
+            android:label="@string/title_activity_text_to_speech"
             android:theme="@style/Theme.MyApplication"></activity>
 
     </application>
