@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.ui.AudioPlayerActivity
 import com.example.myapplication.ui.AudioRecorderActivity
+import com.example.myapplication.ui.MotionActivity
 import com.example.myapplication.ui.TextToSpeechActivity
 
 class MainActivity : ComponentActivity() {
@@ -47,6 +48,11 @@ class MainActivity : ComponentActivity() {
                 context.startActivity(Intent(context, TextToSpeechActivity::class.java))
             }) {
                 Text(text = "Go to TextToSpeechActivity")
+            }
+            Button(onClick = {
+                context.startActivity(Intent(context, MotionActivity::class.java))
+            }) {
+                Text(text = "Go to MotionActivity")
             }
         }
     }
