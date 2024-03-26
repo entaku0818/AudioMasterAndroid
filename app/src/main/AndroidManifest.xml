@@ -41,6 +41,11 @@
             android:label="@string/title_activity_text_to_speech"
             android:theme="@style/Theme.MyApplication"></activity>
         <activity
+            android:name=".ui.MovieActivity"
+            android:exported="true"
+            android:label="@string/title_activity_text_to_speech"
+            android:theme="@style/Theme.MyApplication"></activity>
+        <activity
             android:name=".ui.MotionActivity"
             android:exported="true"
             android:label="@string/title_activity_text_to_speech"
