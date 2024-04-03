@@ -7,7 +7,7 @@ import com.example.myapplication.model.VideoRecorder
 import java.io.File
 
 class VideoRecorderViewModel(application: Application) : AndroidViewModel(application) {
-    private val videoRecorder = VideoRecorder() // VideoRecorderはMediaRecorderをラップするクラスです
+    private val videoRecorder = VideoRecorder(application) // VideoRecorderはMediaRecorderをラップするクラスです
 
     fun startRecording() {
         // Scoped Storageに対応した保存先のパスを設定

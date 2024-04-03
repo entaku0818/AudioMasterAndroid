@@ -18,6 +18,7 @@ import com.example.myapplication.ui.AudioRecorderActivity
 import com.example.myapplication.ui.MotionActivity
 import com.example.myapplication.ui.MovieActivity
 import com.example.myapplication.ui.TextToSpeechActivity
+import com.example.myapplication.ui.VideoRecorderActivity
 
 class MainActivity : ComponentActivity() {
 
@@ -60,6 +61,11 @@ class MainActivity : ComponentActivity() {
                 context.startActivity(Intent(context, MotionActivity::class.java))
             }) {
                 Text(text = "Go to MotionActivity")
+            }
+            Button(onClick = {
+                context.startActivity(Intent(context, VideoRecorderActivity::class.java))
+            }) {
+                Text(text = "Go to VideoRecorderActivity")
             }
         }
     }
