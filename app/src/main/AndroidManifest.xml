@@ -2,18 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
-        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ui.VideoPlaybackActivity"
+            android:exported="false"
+            android:label="@string/title_activity_video_playback"
+            android:theme="@style/Theme.MyApplication" />
         <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
@@ -30,39 +43,33 @@
             android:name=".ui.AudioPlayerActivity"
             android:exported="true"
             android:label="@string/title_audio_player"
-            android:theme="@style/Theme.MyApplication"></activity>
+            android:theme="@style/Theme.MyApplication" />
         <activity
             android:name=".ui.AudioRecorderActivity"
             android:exported="true"
             android:label="@string/title_activity_audio_recoder"
-            android:theme="@style/Theme.MyApplication"></activity>
+            android:theme="@style/Theme.MyApplication" />
         <activity
             android:name=".ui.TextToSpeechActivity"
             android:exported="true"
             android:label="@string/title_activity_text_to_speech"
-            android:theme="@style/Theme.MyApplication"></activity>
+            android:theme="@style/Theme.MyApplication" />
         <activity
             android:name=".ui.MovieActivity"
             android:exported="true"
             android:label="@string/title_activity_text_to_speech"
-            android:theme="@style/Theme.MyApplication"></activity>
+            android:theme="@style/Theme.MyApplication" />
         <activity
             android:name=".ui.MotionActivity"
             android:exported="true"
             android:label="@string/title_activity_text_to_speech"
-            android:theme="@style/Theme.MyApplication"></activity>
-
+            android:theme="@style/Theme.MyApplication" />
         <activity
             android:name=".ui.VideoRecorderActivity"
             android:exported="true"
             android:label="@string/title_activity_text_to_speech"
-            android:theme="@style/Theme.MyApplication"></activity>
+            android:theme="@style/Theme.MyApplication" />
 
     </application>
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
 
 </manifest>

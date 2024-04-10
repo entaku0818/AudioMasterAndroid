@@ -11,11 +11,7 @@
         android:id="@+id/textureView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_alignParentBottom="true"/>
+
     <Button
         android:id="@+id/recordButton"
         android:layout_width="wrap_content"

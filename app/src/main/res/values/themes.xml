@@ -2,6 +2,7 @@
 <resources>
 
     <style name="Theme.MyApplication" parent="android:Theme.Material.Light.NoActionBar" />
+
     <style name="Theme.App.ModalActivity" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

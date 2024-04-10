@@ -2,6 +2,7 @@ package com.example.myapplication.ui
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.SurfaceTexture
 import android.hardware.camera2.CameraAccessException
@@ -12,11 +13,11 @@ import android.hardware.camera2.CameraMetadata
 import android.hardware.camera2.CaptureRequest
 import android.media.MediaRecorder
 import android.os.Bundle
+import android.util.Log
 import android.view.Surface
 import android.view.TextureView
 import android.widget.Button
 import android.widget.Toast
-import android.widget.VideoView
 import androidx.activity.ComponentActivity
 import androidx.core.app.ActivityCompat
 import com.example.myapplication.R
@@ -25,7 +26,6 @@ import com.example.myapplication.R
 class VideoRecorderActivity : ComponentActivity() {
 
     private lateinit var textureView: TextureView
-    private lateinit var videoView: VideoView
     private var cameraDevice: CameraDevice? = null
     private var cameraCaptureSessions: CameraCaptureSession? = null
     private var captureRequestBuilder: CaptureRequest.Builder? = null
@@ -66,7 +66,6 @@ class VideoRecorderActivity : ComponentActivity() {
         setContentView(R.layout.activity_movie)
 
         textureView = findViewById(R.id.textureView)
-        videoView = findViewById(R.id.videoView)
         val recordButton: Button = findViewById(R.id.recordButton)
 
         videoPath = "${getExternalFilesDir(null)?.absolutePath}/myVideo.mp4"
@@ -131,13 +130,66 @@ class VideoRecorderActivity : ComponentActivity() {
             e.printStackTrace()
         }
     }
-
     private fun startRecording() {
-        // TODO: Implement start recording functionality using MediaRecorder
+        cameraDevice?.let { camera ->
+            // Initialize MediaRecorder
+            mediaRecorder = MediaRecorder().apply {
+                setAudioSource(MediaRecorder.AudioSource.MIC)
+                setVideoSource(MediaRecorder.VideoSource.SURFACE)
+                setOutputFormat(MediaRecorder.OutputFormat.DEFAULT)
+                setOutputFile(videoPath)
+                setVideoEncodingBitRate(1000)
+                setVideoFrameRate(30)
+                setVideoSize(1280, 720)
+                setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT)
+                setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+                prepare()
+            }
+
+            // Create a list of surfaces for the camera capture session
+            val previewSurface = Surface(textureView.surfaceTexture)
+            val recordingSurface = mediaRecorder!!.surface
+            camera.createCaptureSession(listOf(previewSurface, recordingSurface), object : CameraCaptureSession.StateCallback() {
+                override fun onConfigured(session: CameraCaptureSession) {
+                    // The camera is already closed
+                    if (cameraDevice == null) return
+
+                    // When the session is ready, we start displaying the preview and recording
+                    cameraCaptureSessions = session
+                    updatePreview()
+                    runOnUiThread {
+                        // Start recording
+                        mediaRecorder?.start()
+                        isRecording = true
+                    }
+                }
+
+                override fun onConfigureFailed(session: CameraCaptureSession) {
+                    Toast.makeText(this@VideoRecorderActivity, "Configuration failed", Toast.LENGTH_SHORT).show()
+                }
+            }, null)
+        }
     }
 
+
     private fun stopRecording() {
-        // TODO: Implement stop recording functionality and play recorded video
+        // Stop recording
+        try {
+            mediaRecorder?.stop()
+            mediaRecorder?.reset()
+        } catch (e: RuntimeException) {
+            Log.e("VideoRecorderActivity", "Exception stopping the recording: ${e.message}")
+        } finally {
+            mediaRecorder?.release()
+            mediaRecorder = null
+        }
+        isRecording = false
+
+        // Start playback activity
+        val intent = Intent(this, VideoPlaybackActivity::class.java).apply {
+            putExtra("videoPath", videoPath)
+        }
+        startActivity(intent)
     }
 
 
