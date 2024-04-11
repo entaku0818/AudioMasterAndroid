@@ -67,6 +67,7 @@ dependencies {
     implementation("com.google.android.exoplayer:exoplayer:2.19.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    implementation("androidx.appcompat:appcompat:1.6.1")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:4.0.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

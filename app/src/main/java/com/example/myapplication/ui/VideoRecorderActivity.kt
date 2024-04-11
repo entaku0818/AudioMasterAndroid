@@ -16,7 +16,6 @@ import androidx.camera.video.Recording
 import androidx.camera.video.VideoCapture
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.android.example.cameraxapp.databinding.ActivityMainBinding
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import android.widget.Toast
@@ -33,6 +32,7 @@ import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
 import androidx.camera.video.VideoRecordEvent
 import androidx.core.content.PermissionChecker
+import com.example.myapplication.databinding.ActivityMovieBinding
 import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -40,7 +40,7 @@ import java.util.Locale
 typealias LumaListener = (luma: Double) -> Unit
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewBinding: ActivityMainBinding
+    private lateinit var viewBinding: ActivityMovieBinding
 
     private var imageCapture: ImageCapture? = null
 
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        viewBinding = ActivityMovieBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
         // Request camera permissions
