@@ -1,8 +1,5 @@
 package com.example.myapplication.ui
 
-
-
-
 import android.Manifest
 import android.content.ContentValues
 import android.content.pm.PackageManager
@@ -39,7 +36,7 @@ import java.util.Locale
 
 typealias LumaListener = (luma: Double) -> Unit
 
-class MainActivity : AppCompatActivity() {
+class VideoRecorderActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityMovieBinding
 
     private var imageCapture: ImageCapture? = null
@@ -98,5 +95,21 @@ class MainActivity : AppCompatActivity() {
                     add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 }
             }.toTypedArray()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults:
+        IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
+                startCamera()
+            } else {
+                Toast.makeText(this,
+                    "Permissions not granted by the user.",
+                    Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
     }
 }
