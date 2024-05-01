@@ -51,6 +51,7 @@ android {
 }
 
 val camerax_version = "1.1.0-beta01"
+val mediaVersion = "1.0.0-alpha03"
 
 dependencies {
 
@@ -85,4 +86,8 @@ dependencies {
     implementation("androidx.camera:camera-video:$camerax_version")
     implementation("androidx.camera:camera-view:$camerax_version")
     implementation("androidx.camera:camera-extensions:$camerax_version")
+
+    implementation("androidx.media3:media3-exoplayer:$mediaVersion")
+    implementation("androidx.media3:media3-ui:$mediaVersion")
+    implementation("androidx.media3:media3-exoplayer-dash:$mediaVersion")
 }
