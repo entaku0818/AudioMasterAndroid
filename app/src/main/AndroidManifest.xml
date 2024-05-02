@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -68,6 +71,11 @@
             android:theme="@style/Theme.MyApplication" />
         <activity
             android:name=".ui.VideoRecorderActivity"
+            android:exported="true"
+            android:label="@string/title_activity_text_to_speech"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.PlayerActivity"
             android:exported="true"
             android:label="@string/title_activity_text_to_speech"
             android:theme="@style/AppTheme.NoActionBar" />
