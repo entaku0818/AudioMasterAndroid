@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.example.myapplication.ui.AnimationDemoActivity
 import com.example.myapplication.ui.AudioPlayerActivity
 import com.example.myapplication.ui.AudioRecorderActivity
 import com.example.myapplication.ui.MotionActivity
@@ -73,6 +74,12 @@ class MainActivity : ComponentActivity() {
                 context.startActivity(Intent(context, PlayerActivity::class.java))
             }) {
                 Text(text = "Go to PlayerActivity")
+            }
+
+            Button(onClick = {
+                context.startActivity(Intent(context, AnimationDemoActivity::class.java))
+            }) {
+                Text(text = "Go to AnimationDemoActivity")
             }
         }
     }
